@@ -6,6 +6,8 @@ buildscript {
   ext.constraintLayout = '1.0.2'
   ext.support_version = '26.1.0'
   ext.okHttp = '3.8.1'
+  ext.dagger = '2.24'
+  ext.javax = '1.0'
 
   repositories {
     jcenter()
