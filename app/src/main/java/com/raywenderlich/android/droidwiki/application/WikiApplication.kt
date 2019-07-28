@@ -37,7 +37,7 @@ import com.raywenderlich.android.droidwiki.dagger.DaggerAppComponent
 
 class WikiApplication : Application() {
 
-  private lateinit var appComponent: AppComponent
+  lateinit var appComponent: AppComponent
 
   private fun initDagger(app:WikiApplication):AppComponent=
           DaggerAppComponent
