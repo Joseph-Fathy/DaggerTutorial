@@ -1,5 +1,7 @@
 package com.raywenderlich.android.droidwiki.dagger
 
+import com.raywenderlich.android.droidwiki.network.Homepage
+import com.raywenderlich.android.droidwiki.network.WikiSearchResult
 import com.raywenderlich.android.droidwiki.ui.homepage.HomepagePresenter
 import com.raywenderlich.android.droidwiki.ui.homepage.HomepagePresenterImpl
 import com.raywenderlich.android.droidwiki.ui.search.EntryPresenter
@@ -13,10 +15,10 @@ class PresenterModule {
 
     @Provides
     @Singleton
-    fun providesHomePagePresenter(): HomepagePresenter = HomepagePresenterImpl()
+    fun providesHomePagePresenter(homePage:Homepage): HomepagePresenter = HomepagePresenterImpl(homePage)
 
     @Provides
     @Singleton
-    fun providesEntryPresenter(): EntryPresenter = EntryPresenterImpl()
+    fun providesEntryPresenter(wikiSearchResult: WikiSearchResult): EntryPresenter = EntryPresenterImpl(wikiSearchResult)
 
 }

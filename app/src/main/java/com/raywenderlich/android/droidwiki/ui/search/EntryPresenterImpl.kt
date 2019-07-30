@@ -30,7 +30,7 @@
 
 package com.raywenderlich.android.droidwiki.ui.search
 
-import com.raywenderlich.android.droidwiki.network.Wiki
+import com.raywenderlich.android.droidwiki.network.WikiSearchResult
 import com.raywenderlich.android.droidwiki.model.SearchResult
 import com.raywenderlich.android.droidwiki.network.WikiApi
 import okhttp3.Call
@@ -38,14 +38,11 @@ import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import java.io.IOException
+import javax.inject.Inject
 
-class EntryPresenterImpl : EntryPresenter {
+class EntryPresenterImpl @Inject constructor(private val wikiSearchResult: WikiSearchResult) : EntryPresenter {
 
   private lateinit var entryView: EntryView
-
-  private val client: OkHttpClient = OkHttpClient()
-  private val api: WikiApi = WikiApi(client)
-  private val wiki: Wiki = Wiki(api)
 
   override fun setView(entryView: EntryView) {
     this.entryView = entryView
@@ -53,7 +50,7 @@ class EntryPresenterImpl : EntryPresenter {
 
   override fun getEntry(query: String) {
     entryView.displayLoading()
-    wiki.search(query).enqueue(object : Callback {
+    wikiSearchResult.search(query).enqueue(object : Callback {
       override fun onResponse(call: Call?, response: Response?) {
         entryView.dismissLoading()
         //Everything is ok, show the result if not null

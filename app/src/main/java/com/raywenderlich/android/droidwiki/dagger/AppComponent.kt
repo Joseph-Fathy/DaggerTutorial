@@ -6,11 +6,16 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class , PresenterModule::class])
-interface AppComponent
-{
+@Component(modules = [
+    AppModule::class,
+    PresenterModule::class,
+    NetworkModule::class,
+    WikiModule::class
+])
+
+interface AppComponent {
     //HomepageActivity class will require injection from AppComponent.
-    fun inject(target:HomepageActivity)
+    fun inject(target: HomepageActivity)
 
     //SearchActivity class will require injections from AppComponent
     fun inject(target: SearchActivity)
